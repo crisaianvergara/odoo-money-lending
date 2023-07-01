@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="borrow_money_view_tree" model="ir.ui.view">
+        <field name="name">borrow.money.view.tree</field>
+        <field name="model">borrow.money</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="borrower_id"/>
+                <field name="date_borrowed" />
+                <field name="amount" />
+                <field name="interest_rate" />
+                <field name="interest_value" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="borrow_money_view_form" model="ir.ui.view">
+        <field name="name">borrow.money.view.form</field>
+        <field name="model">borrow.money</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="borrower_id"/>
+                            <field name="date_borrowed" />
+                            <field name="amount" />
+                        </group>
+                        <group>
+                            <field name="interest_rate" />
+                            <field name="interest_value" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="borrow_money_action" model="ir.actions.act_window">
+        <field name="name">Borrow Money</field>
+        <field name="res_model">borrow.money</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="borrow_money_menu_action" name="Borrow Money" parent="transactions_menu" 
+        action="borrow_money_action" sequence="0" />
+</odoo>
