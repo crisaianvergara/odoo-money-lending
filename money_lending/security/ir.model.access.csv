@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_borrower,access.borrower,money_lending.model_borrower,base.group_user,1,1,1,1
+access_borrow_money,access.borrow.money,money_lending.model_borrow_money,base.group_user,1,1,1,1
+access_occupation,access.occupation,money_lending.model_occupation,base.group_user,1,1,1,1

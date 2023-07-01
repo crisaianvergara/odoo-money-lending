@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <menuitem id="money_lending_menu_root" name="Money Lending" web_icon="money_lending,static/description/icon.png" sequence="0" />
+    <menuitem id="borrower_details_menu" name="Borrower Details" parent="money_lending_menu_root" sequence="0" />
+    <menuitem id="transactions_menu" name="Transactions" parent="money_lending_menu_root" sequence="1" />
+    <menuitem id="reports_menu" name="Reports" parent="money_lending_menu_root" sequence="2" />
+ </odoo>
