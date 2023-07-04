@@ -1,1 +1,1 @@
-READ ME!
+python3 odoo-bin --addons-path=enterprise,addons,custom -d dblending -u money_lending,pos_custom --dev xml --xmlrpc-port=9000
