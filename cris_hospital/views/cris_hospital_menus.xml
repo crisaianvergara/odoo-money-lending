@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <menuitem id="hospital_patient_menu_root" name="Hospital" web_icon="cris_hospital,static/description/icon.png" sequence="0" />
+    <menuitem id="hospital_patient_details_menu" name="Patient Details" parent="hospital_patient_menu_root" sequence="0" />
+    <menuitem id="hospital_appointment_menu" name="Appointments" parent="hospital_patient_menu_root" sequence="1" />
+ </odoo>

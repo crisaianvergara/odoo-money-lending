@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <menuitem id="estate_menu_root" name="Real Estate" web_icon="estate,static/description/icon.png" sequence="-2" />
+    <menuitem id="estate_advertisement_menu" name="Advertisements" parent="estate_menu_root" />
+    <menuitem id="estate_settings_menu" name="Settings" parent="estate_menu_root" />
+</odoo>
