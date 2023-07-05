@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <record id="hospital_patient_view_tree" model="ir.ui.view">
+        <field name="name">hospital.patient.view.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Patient Name" />
+                <field name="age" />
+                <field name="ref" />
+                <field name="gender" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="hospital_patient_view_form" model="ir.ui.view">
+        <field name="name">hospital.patient.view.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="date_of_birth" />
+                            <field name="age" />
+                        </group>
+                        <group>
+                            <field name="ref" />
+                            <field name="gender" />
+                            <field name="active" invisible="1" />
+                        </group>
+                    </group>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="hospital_patient_view_search" model="ir.ui.view">
+        <field name="name">hospital.patient.view.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Patient Name" filter_domain="['|', ('name', 'ilike', self), ('ref', 'ilike', self)]" />
+                <field name="ref" />
+                <field name="age" />
+                <field name="gender" />
+                <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]" />
+                <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]" />
+                <separator />
+                <!-- <filter name="filter_kids" string="Kids" domain="[('age', '&lt;', 5)]" />
+                <separator /> -->
+                <filter name="filter_archive" string="Archived" domain="[('active', '=', False)]" />
+                <group expand="0" string="Group By">
+                    <filter string="Gender" name='group_by_gender' context="{'group_by':'gender'}"/>
+                </group>
+                <searchpanel>
+                    <field name="gender" icon="fa-users" enable_counters="1" select="multi" />
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="hospital_patient_action" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_filter_male' : 1, 'search_default_group_by_gender' : 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Patient records.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="hospital_patient_menu_action" name="Patients" parent="hospital_patient_details_menu" action="hospital_patient_action" sequence="0" />
+</odoo>

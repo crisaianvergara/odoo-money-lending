@@ -1,0 +1,22 @@
+{
+    'name': 'Hospital Management',
+    'version': '1.0.0',
+    'category': 'Hospital',
+    'author': 'Cris-aian Vergara',
+    'sequence': -100,
+    'summary': 'Hospital management system',
+    'description': """Hospital management system""",
+    'depends': ['mail'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/cris_hospital_menus.xml',
+        'views/hospital_patient_views.xml',
+        'views/hospital_patient_female_views.xml',
+        'views/hospital_appointment_views.xml',
+    ],
+    'demo': [],
+    'application': True,
+    'installable': True,
+    'auto_install': False,
+    'license': 'LGPL-3',
+}
