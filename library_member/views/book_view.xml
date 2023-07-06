@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <!-- Added new field(is_available) to existing view (view_form_book) -->
+    <record id="view_form_book_extend" model="ir.ui.view">
+        <field name="name">Book: add Is Available</field>
+        <field name="model">library.book</field>
+        <field name="inherit_id" ref="library_app.view_form_book" />
+        <field name="arch" type="xml">
+            <!-- Placed after ISBN field -->
+            <field name="isbn" position="after">
+                <field name="is_available" />
+            </field>
+        </field>
+    </record>
+</odoo>
