@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<odoo>
+<!-- noupdate means this xml file will not update when using -u command -->
+<!-- unless use -i command or edit noupdate="1" to ="0" -->
+<odoo noupdate="1">
     <data>
         <!-- Library User Group -->
         <record id="library_group_user" model="res.groups">
@@ -18,7 +20,13 @@
         </record>
     </data>
 
-    <data noupdate="1">
+    <!-- Record Rules
+    The manager will see all the books(active and inactive)
+    The user will only see books(active)
+    If the user edit the book from active to inactive
+    The browser will hang and need to be reload
+    When the browser done reloading the user will not be able to see the book -->
+    <data>
         <record id="book_user_rule" model="ir.rule">
             <field name="name">Library Book User Access</field>
             <field name="model_id" ref="model_library_book" />
