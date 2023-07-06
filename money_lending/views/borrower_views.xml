@@ -6,13 +6,9 @@
         <field name="model">borrower</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
-                <field name="address" />
-                <field name="birth_date" />
-                <field name="age" />
-                <field name="gender" />
-                <field name="occupation_ids" widget="many2many_tags" />
-                <field name="cellphone_number" />
+                <field name="name" />
+                <field name="mobile" />
+                <field name="title" string="Job Title" />
             </tree>
         </field>
     </record>
@@ -25,17 +21,50 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="address" />
+                            <field name="name" 
+                                placeholder="First Name, Middle Name, Last Name" />
                             <field name="birth_date" />
                             <field name="age" />
                             <field name="gender" />
                         </group>
                         <group>
-                            <field name="occupation_ids" widget="many2many_tags" />
-                            <field name="cellphone_number" />
+                            <field name="address" 
+                                placeholder="Zone, Barangay, Municipality, Province" />
+                            <field name="mobile" />
+                            <field name="email" />
+                            <field name="title" string="Job Title" />
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Gcash Account">
+                            <group>
+                                <field name="gcash_account_name" />
+                                <field name="gcash_account_number" />
+                            </group>
+                        </page>
+                        <page string="Bank Account">
+                            <group>
+                                <field name="bank_account_name" />
+                                <field name="bank_account_number" />
+                                <field name="bank_branch" />
+                            </group>
+                        </page>
+                        <page string="Borrows">
+                            <field name="borrow_money_ids">
+                                <tree>
+                                    <field name="borrower_id"/>
+                                    <field name="date_borrowed" />
+                                    <field name="amount" />
+                                    <field name="interest_rate" />
+                                    <field name="interest_value" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -47,6 +76,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="borrower_menu_action" name="Borrowers" parent="borrower_details_menu" 
-        action="borrower_action" sequence="0" />
+    <menuitem id="borrower_menu_action" name="Borrowers" 
+        parent="money_lending_menu_root" action="borrower_action" 
+        sequence="0" />
 </odoo>
