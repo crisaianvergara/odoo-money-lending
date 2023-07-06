@@ -3,3 +3,6 @@ python3 odoo-bin --addons-path=enterprise,addons,custom -d dblending -u money_le
 python3 odoo-bin --addons-path=enterprise,addons,custom -d dblending -u money_lending,pos_custom,library_app,library_member,odoo_inheritance,cris_hospital,estate,estate_account --dev xml --xmlrpc-port=9000 --test-enable
 <!-- Scaffold - creating odoo modules -->
 ./odoo-bin scaffold library_app custom
+
+<!-- Current database -->
+odoo-bin --addons-path=enterprise,addons,custom -d db-training -u money_lending,pos_custom,library_app,library_member,odoo_inheritance,cris_hospital,estate,estate_account --dev xml --xmlrpc-port=9000
