@@ -23,13 +23,16 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="borrower_id"/>
+                            <field name="borrower_id" options="{'no_create': True}" />
                             <field name="date_borrowed" />
                             <field name="amount" />
+                            <field name="transfer_method" />
                         </group>
                         <group>
                             <field name="interest_rate" />
                             <field name="interest_value" />
+                            <field name="monthly_interest" />
+                            <field name="date_to_pay" />
                         </group>
                     </group>
                 </sheet>

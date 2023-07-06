@@ -12,7 +12,6 @@
         'views/money_lending_menus.xml',
         'views/borrower_views.xml',
         'views/borrow_money_views.xml',
-        'views/occupation_views.xml',
     ],
     'demo': [],
     'application': True,
