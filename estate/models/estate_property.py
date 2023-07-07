@@ -13,6 +13,11 @@ class EstateProperty(models.Model):
         ('check_selling_price', 'CHECK(selling_price >= 0)', 'The selling price must be positive.'),
     ]
 
+
+    def _default_date_availability(self):
+        """This should declared first before the date_availability default date"""
+        return fields.Date.context_today(self) + relativedelta(months=3)
+
     name = fields.Char(string="Title", required=True)
     description = fields.Text(string="Description")
     postcode = fields.Char(string="Postcode")
@@ -57,8 +62,6 @@ class EstateProperty(models.Model):
     total_area = fields.Float(string="Total Area (sqm)", compute="_compute_total_area")
     best_price = fields.Float(string="Best Offer", compute="_compute_best_offer")
 
-    def _default_date_availability(self):
-        return fields.Date.context_today(self) + relativedelta(months=3)
     
     @api.depends("living_area", "garden_area")
     def _compute_total_area(self):
