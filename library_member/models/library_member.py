@@ -7,6 +7,7 @@ class Member(models.Model):
     
     # Delegation Inheritance
     _inherits = {"res.partner": "partner_id"}
+    # Inheritance
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
     card_number = fields.Char()
