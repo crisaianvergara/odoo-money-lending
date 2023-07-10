@@ -1,0 +1,3 @@
+Computed Fields And Onchange
+    - Use computed fields when theres no plan to use the inverse except when its really inverse
+    - Use onchange instead
