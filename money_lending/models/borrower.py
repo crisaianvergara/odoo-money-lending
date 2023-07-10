@@ -7,9 +7,18 @@ from odoo.exceptions import ValidationError
 class Borrower(models.Model):
     _name = "borrower"
     _description = "Borrower"
+
     # Delegation Inheritance
     _inherits = {"res.partner": "partner_id"}
 
+    # SQL Constraints
+    _sql_constraints = [
+        (
+            "borrow_check_address",
+            "CHECK(length(address) > 5)",
+            "Address must be greater than 5 characters."
+        ),
+    ]
     # Modifying fields (Delegation Inheritance)
     partner_id = fields.Many2one(
         "res.partner",
@@ -19,7 +28,7 @@ class Borrower(models.Model):
     )
     email = fields.Char(related="partner_id.email", readonly=False)
     mobile = fields.Char(related="partner_id.mobile", required=True, readonly=False)
-    title = fields.Many2one(related="partner_id.title", required=True, readonly=False)
+    function = fields.Char(related="partner_id.function", required=True, readonly=False)
 
     address = fields.Char(string="Address", required=True, size=250)
     birth_date = fields.Date(string="Birth Date", required=True)
@@ -51,8 +60,34 @@ class Borrower(models.Model):
     )
     
 
+    @api.depends('birth_date')
+    def _compute_age(self):
+        """Compute age"""
+        for rec in self:
+            if rec.birth_date:
+                age = (date.today() - rec.birth_date) // timedelta(days=365.2425)
+                if 18 <= age <= 60:
+                    rec.age = age
+                else:
+                    raise ValidationError("Age must be between 18 to 60.")
+            else:
+                rec.age = 0
+    
 
-    @api.onchange('email')
+    # Python Constraints
+    @api.constrains('mobile')
+    def _validate_mobile(self):
+        """Validate mobile"""
+        if self.mobile:
+            match = re.match(
+                "((^(\+)(\d){12}$)|(^\d{11}$))",
+                self.mobile
+            )
+            if match == None:
+                raise ValidationError("Please enter a valid mobile number.")
+            
+
+    @api.constrains('email')
     def _validate_email(self):
         """Validate email address"""
         try:
@@ -65,17 +100,7 @@ class Borrower(models.Model):
                 raise ValidationError('Please enter a valid email address!')
         except UnboundLocalError:
             print("UnboundLocalError triggered!")
-            
-
-
-    @api.depends('birth_date')
-    def _compute_age(self):
-        """Compute age"""
-        for rec in self:
-            if rec.birth_date:
-                rec.age = (date.today() - rec.birth_date) // timedelta(days=365.2425)
-            else:
-                rec.age = 0
+    
 
 
 
