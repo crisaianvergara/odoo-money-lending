@@ -1,0 +1,7 @@
+>>> self.env.cr.execute("SELECT id, login FROM res_users WHERE login=%s OR id=%s", ("demo", 1))
+>>> self.env.cr.execute("SELECT id, login FROM res_users WHERE login=%(login)s OR id=%(id)s", {"login": "demo", "id": 1})
+
+>>> self.env.cr.fetchall()
+[(1, '__system__'), (6, 'demo')]
+>>> self.env.cr.dictfetchall()
+[]

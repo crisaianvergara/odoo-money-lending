@@ -1,0 +1,55 @@
+>>> from datetime import date
+>>> date.today()
+datetime.date(2023, 7, 11)
+
+>>> from datetime import timedelta
+>>> date(2023, 7, 11) + timedelta(days=7)
+datetime.date(2023, 7, 18)
+
+>>> from dateutil.relativedelta import relativedelta
+>>> date(2023, 7, 11) + relativedelta(years=1, months=1)
+datetime.date(2024, 8, 11)
+
+Tip:
+    - timedelta only supports weeks, days, hours, seconds and monthly_interest
+    - relativedelta supports year and one month
+
+>>> from odoo.tools import date_utils
+>>> from datetime import datetime
+>>> now = datetime(2023, 7, 11, 0, 0, 0)
+
+>>> date_utils.start_of(now, 'week')
+datetime.datetime(2023, 7, 10, 0, 0)
+
+>>> date_utils.end_of(now, 'week')
+datetime.datetime(2023, 7, 16, 23, 59, 59, 999999)
+
+>>> today = date(2023, 7, 11)
+>>> date_utils.add(today, months=2)
+datetime.date(2023, 9, 11)
+
+>>> date_utils.subtract(today, months=2)
+datetime.date(2023, 5, 11)
+
+Format Date
+>>> from datetime import date
+>>> date(2023, 7, 11).strftime("%d/%m/%Y")
+'11/07/2023'
+
+>>> from odoo import fields
+>>> fields.Datetime.to_datetime("2023-07-11 13:54:55")
+datetime.datetime(2023, 7, 11, 13, 54, 55)
+
+>>> from datetime import datetime
+>>> datetime.strptime("03/11/2023", "%d/%m/%Y")
+datetime.datetime(2023, 11, 3, 0, 0)
+
+UTC
+>>> from datetime import datetime
+>>> import pytz
+>>> naive_date = datetime(2020, 12, 1, 0, 30, 0)
+>>> client_tz = self.env.context["tz"]
+>>> client_date = pytz.timezone(client_tz).localize(naive_date)
+>>> utc_date = client_date.astimezone(pytz.utc)
+>>> print(utc_date)
+2020-11-30 23:30:00+00:00
