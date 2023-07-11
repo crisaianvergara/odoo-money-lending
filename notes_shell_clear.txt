@@ -1,0 +1,8 @@
+import os
+os.system('clear')
+
+
+print ("\n" * 100)
+
+function
+def cls(): print ("\n" * 100)
