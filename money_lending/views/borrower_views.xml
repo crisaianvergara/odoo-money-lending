@@ -8,7 +8,7 @@
             <tree>
                 <field name="name" />
                 <field name="mobile" />
-                <field name="title" string="Job Title" />
+                <field name="function" string="Job Position" />
             </tree>
         </field>
     </record>
@@ -32,10 +32,21 @@
                                 placeholder="Zone, Barangay, Municipality, Province" />
                             <field name="mobile" />
                             <field name="email" />
-                            <field name="title" string="Job Title" />
+                            <field name="function" string="Job Position" />
                         </group>
                     </group>
                     <notebook>
+                        <page string="Borrows">
+                            <field name="borrow_money_ids">
+                                <tree>
+                                    <field name="borrower_id"/>
+                                    <field name="borrowed_date" />
+                                    <field name="amount" />
+                                    <field name="interest_rate" />
+                                    <field name="interest_value" />
+                                </tree>
+                            </field>
+                        </page>
                         <page string="Gcash Account">
                             <group>
                                 <field name="gcash_account_name" />
@@ -47,21 +58,6 @@
                                 <field name="bank_account_name" />
                                 <field name="bank_account_number" />
                                 <field name="bank_branch" />
-                            </group>
-                        </page>
-                        <page string="Borrows">
-                            <field name="borrow_money_ids">
-                                <tree>
-                                    <field name="borrower_id"/>
-                                    <field name="date_borrowed" />
-                                    <field name="amount" />
-                                    <field name="interest_rate" />
-                                    <field name="interest_value" />
-                                </tree>
-                            </field>
-                        </page>
-                        <page string="Other Info">
-                            <group>
                             </group>
                         </page>
                     </notebook>
