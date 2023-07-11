@@ -1,0 +1,30 @@
+>>> rs0 = self.env["res.partner"].search([("display_name", "like", "Azure")])
+>>> len(rs0)
+4
+>>> rs0.filtered(lambda r: r.name.startswith("Nicole"))
+res.partner(27,)
+
+>>> rs0.mapped("name")
+['Azure Interior', 'Brandon Freeman', 'Colleen Diaz', 'Nicole Ford']
+
+>>> rs0.sorted("name", reverse=True).mapped("name")
+['Nicole Ford', 'Colleen Diaz', 'Brandon Freeman', 'Azure Interior']
+
+>>> rs0.mapped(lambda r: (r.id, r.name))
+[(14, 'Azure Interior'), (26, 'Brandon Freeman'), (33, 'Colleen Diaz'), (27, 'Nicole Ford')]
+
+>>> Partner = self.env["res.partner"]
+>>> recs = self.env["res.partner"]
+>>> for i in range(3):
+...     rec = Partner.create({"name": "Partner %s" % i})
+...     recs |= rec
+... 
+
+>>> Partner = self.env["res.partner"]
+>>> recs = []
+>>> for i in range(3):
+...     rec = Partner.create({"name": "Partner %s" %i})
+...     recs.append(rec)
+... 
+>>> print(recs)
+[res.partner(94,), res.partner(95,), res.partner(96,)]
