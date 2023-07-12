@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="action_library_checkout" model="ir.actions.act_window">
+        <field name="name">Checkouts</field>
+        <field name="res_model">library.checkout</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_library_stage" model="ir.actions.act_window">
+        <field name="name">Stages</field>
+        <field name="res_model">library.checkout.stage</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_library_stage" name="Stages" action="action_library_stage"
+        parent="menu_library_configuration" />
+
+    <menuitem id="menu_library_configuration" name="Configuration"
+        parent="library_app.menu_library" />
+
+    <menuitem id="menu_library_checkout" name="Checkout" 
+        parent="library_app.menu_library" action="action_library_checkout" />
+
+</odoo>
