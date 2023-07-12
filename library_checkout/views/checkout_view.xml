@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="view_tree_checkout" model="ir.ui.view">
+        <field name="name">Checkout Tree</field>
+        <field name="model">library.checkout</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="request_date" />
+                <field name="member_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_form_checkout" model="ir.ui.view">
+        <field name="name">Checkout Form</field>
+        <field name="model">library.checkout</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="member_id" />
+                        <field name="request_date" />
+                        <field name="user_id" />
+                    </group>
+                    <notebook>
+                        <page name="lines">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="book_id" />
+                                    <field name="note" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
