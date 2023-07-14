@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <template id="decorp_layout">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+        <t t-if="not company">
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+        <!-- Header -->
+        <div class="header">
+            <div class="row" style="report_header_style">
+                <div class="col-2">
+                    <div>
+                        <img alt="img" t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+                            style="max-height: 80px;" />
+                    </div>
+                    <small>
+                        <em style="font-size: 12px;">We energize your vision</em>
+                    </small>
+                </div>
+                <div class="col-7 text-center">
+                    <strong>DAGUPAN ELECTRIC CORPORATION</strong>
+                    <br />
+                    <small style="font-size: 13px;">A.B. Fernandez West, Poblacion 
+                        Oeste, 2400 Dagupan City, Pangansinan, Philippines</small>
+                    <br />
+                    <small style="font-size: 13px;">VAT REG. TIN: 000-202-524-000000</small>
+                </div>
+                <div class="col-2">
+                    <div class="row d-flex">
+                        <div>
+                            <img alt="img" class="img-fluid" src="/library_app/static/description/qr-code.png"
+                                style="height: 90px;" />
+                        </div>
+                        <div class="w-75 pt-2">
+                            <p style="padding-bottom: 0; margin-bottom: 5px; font-size: 8px; font-weight: bold;">
+                                Scan QR Code and register to get updates</p>
+                            <p style="padding: 0; margin: 0; font-size: 9px;">Power interuptions</p>
+                            <p style="padding: 0; margin: 0; font-size: 9px;">Anouncements</p>
+                            <p style="padding: 0; margin: 0; font-size: 9px;">Advisories</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class="article o_report_layout_standard">
+            <t t-out="0" />
+        </div>
+    </template>
+
+    <template id="decorp_test_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="library_app.decorp_layout">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card w-100 mb-3" style="border: 2px solid black;">
+                                <div class="card-header bg-primary text-center">
+                                    ACCOUNT INFORMATION
+                                </div>
+                                <div class="card-body">
+                                    <p class="my-0">Account Name</p>
+                                    <p class="my-0"><strong t-field="doc.name"></strong></p>
+                                    <p class="my-0">Billing Address</p>
+                                    <p class="my-0"><strong>Pangapisan North, Lingayen</strong></p>
+                                    <p class="my-0">Account Number</p>
+                                    <p class="my-0"><strong>2323-1234-56</strong></p>
+                                    <p class="my-0">Customer Type</p>
+                                    <p class="my-0"><strong>Residential</strong></p>
+                                </div>
+                            </div>
+                            <div class="card w-100 mb-3" style="border: 2px solid black;">
+                                <div class="card-header bg-primary text-center">
+                                    METER INFORMATION
+                                </div>
+                                <div class="card-body">
+                                    <p class="my-0">Meter No.</p>
+                                    <p class="my-0"><strong>123456789</strong></p>
+                                    <p class="my-0">Billing Period</p>
+                                    <p class="my-0"><strong>Apr. 20, 2023 to May 19, 2023</strong></p>
+                                    <p class="my-0">No. of Days</p>
+                                    <p class="my-0"><strong>30</strong></p>
+                                    <p class="my-0">Present Reading</p>
+                                    <p class="my-0"><strong>7739</strong></p>
+                                    <p class="my-0">Previous Reading</p>
+                                    <p class="my-0"><strong>(-) 7380</strong></p>
+                                    <p class="my-0">Total Actual Consumption</p>
+                                    <p class="my-0"><strong>(=) 359 kWh</strong></p>
+                                    <br />
+                                    <p class="my-0">Average Rate per kWh this month</p>
+                                    <p class="my-0"><strong>Php 11.41 per kWh</strong></p>
+                                    <p class="my-0"><small><em>See formula in Other Bill Information</em></small></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="card w-100 mb-3" style="border: 2px solid black;">
+                                <div class="card-header bg-primary text-center">
+                                    STATEMENT OF ACCOUNT
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-3 w-100">
+                                        <div class="col-4">
+                                            <p class="my-0">Billing Month</p>
+                                            <p class="my-0"><strong>May '23</strong></p>
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="my-0">Bill No.</p>
+                                            <p class="my-0"><strong>0123456A</strong></p>
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="my-0">Due Date</p>
+                                            <p class="my-0"><strong>Jun. 13, 2023</strong></p>
+                                        </div>
+                                    </div>
+                                    <div class="row w-100">
+                                        <div class="col-4">
+                                        </div>
+                                        <div class="col-4">
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="my-0">Total Amount</p>
+                                            <p class="my-0"><strong>Php 7,6686.48</strong></p>
+                                            <p class="my-0"><small><em>See page 2 for details of changes</em></small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card w-100 mb-3" style="border: 2px solid black;">
+                                <div class="card-header bg-primary text-center d-flex justify-content-center">
+                                    <p>BILL SUMMARY</p>
+                                    <p>AMOUNT</p>
+                                </div>
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t> 
+        </t>
+    </template>
+
+    <record id="action_decorp_test_report" model="ir.actions.report">
+        <field name="name">Decorp Test Report</field>
+        <field name="model">library.book</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">library_app.decorp_test_report</field>
+        <field name="binding_model_id" ref="model_library_book" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
