@@ -1,0 +1,34 @@
+Create create()
+>>> Partner = self.env["res.partner"]
+>>> new = Partner.create({"name": "ACME", "is_company": True})
+>>> print(new)
+res.partner(87,)
+
+Using copy()
+>>> demo = self.env.ref("base.user_demo")
+>>> new = demo.copy({"name": "John", "login": "john@example.com"})
+
+Update write()
+>>> Partner = self.env["res.partner"]
+>>> recs = Partner.search([("name", "ilike", "Azure")])
+>>> recs.write({"comment": "Hello"})
+
+>>> mycompany_partner = self.company_id.partner_id
+>>> myaddress = self.partner_id
+>>> mycompany_partner.child_ids = mycompany_partner.child_ids | myaddress
+>>> print(mycompany_partner.child_ids)
+res.partner(39, 40)
+
+Delete unlink()
+>>> Partner = self.env["res.partner"]
+>>> new = Partner.create({"name": "ACME", "is_company": True})
+>>> print(new)
+res.partner(89,)
+>>> rec = Partner.search([("name", "=", "ACME")])
+>>> print(rec)
+res.partner(89,)
+>>> rec.unlink()
+2023-07-11 04:41:52,178 38042 INFO db-training odoo.models.unlink: User #1 deleted mail.message records with IDs: [378] 
+2023-07-11 04:41:52,272 38042 INFO db-training odoo.models.unlink: User #1 deleted res.partner records with IDs: [89] 
+2023-07-11 04:41:52,281 38042 INFO db-training odoo.models.unlink: User #1 deleted mail.followers records with IDs: [295] 
+True

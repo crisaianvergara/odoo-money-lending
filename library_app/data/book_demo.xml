@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo noupdate="1">
+    <!-- Data load -->
+    <record model="res.partner" id="res_partner_huxley">
+        <field name="name">Aldous Huxley</field>
+    </record>
+    
+    <record model="library.book" id="library_book_bnw">
+        <field name="name">Brave New World</field>
+        <!-- <field name="author_ids" eval="[(4, ref('res_partner_huxley'))]" /> -->
+        <!-- Using One to many -->
+        <field name="author_ids" eval="[
+            (6, 0, [ref('res_partner_alexandre'), ref('res_partner_holger')])
+        ]" />
+        <!-- Append -->
+        <field name="author_ids" eval="[(4, ref('res_partner_daniel'))]" />
+        <!-- <field name="publisher_id" eval="ref('res_partner_packt')" /> -->
+        <!-- Simpler alternative is to use -->
+        <field name="publisher_id" ref="res_partner_packt" />
+        <!-- using timedelta -->
+        <!-- <field name="date_published" eval="(datetime.now() + timedelta(-1))" /> -->
+        <field name="date_published">1932-01-01</field>
+        <!-- Delete record -->
+    </record>
+    
+    <!-- Delete res.partner user daniel -->
+    <!-- <delete model="res.partner" search="[('id','=',ref('library_app.res_partner_daniel'))]" /> -->
+    <!-- <delete model="res.partner" id="library_app.res_partner_daniel" />  -->
+</odoo>

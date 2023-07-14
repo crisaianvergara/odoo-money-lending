@@ -1,0 +1,3 @@
+dot notation - rs.name
+bracket notation - rs["name"]
+slice notation - rs[:-1]

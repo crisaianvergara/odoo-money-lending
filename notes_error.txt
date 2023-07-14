@@ -1,0 +1,10 @@
+TypeError: Type of related field borrower.function is inconsistent with res.partner.function - - -
+    - check the field type if correct
+    - if boolean in the inherited model 
+    - should be the same on the model who inherit it
+
+TypeError: 'float' object is not subscriptable
+    - make sure your the fields getting same types of data
+
+TypeError: unsupported operand type(s) for -: 'bool' and 'datetime.date'
+    - check if date is empty by using if statements
