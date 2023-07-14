@@ -1,0 +1,13 @@
+Plan - Understand the problem
+    * Create a report or invoice of the DECORP
+    * Customize the odoo default invoice or report
+    * Use bootstrap 4 and odoo qweb for UI
+    * No input
+    * The data will get in the database and report it
+
+Pseudocode
+    * User must select a data to print
+    * The output must be the same as DECORP invoices
+    * Create Header 1 row 3 columns - The logo, Company+Address and The qr code
+    * Create Body - 1 row 2 columns - Total of 6 Groups
+    * No footer
